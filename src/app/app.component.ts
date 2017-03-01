@@ -4,6 +4,8 @@ import { Component, trigger, state, style, transition, animate } from '@angular/
   selector: 'app-root',
   templateUrl: './app.component.html',
   animations: [
+
+
     trigger('divState', [
       state('normal', style({
         'background-color': 'red',
@@ -17,6 +19,8 @@ import { Component, trigger, state, style, transition, animate } from '@angular/
       //      transition('highlighted => normal', animate(800))
       transition('highlighted <=> normal', animate(300))
     ]),
+
+
     trigger('wildState', [
       state('normal', style({
         'background-color': 'red',
@@ -41,10 +45,34 @@ import { Component, trigger, state, style, transition, animate } from '@angular/
         })),
         animate(500)
       ])
-    ])
+    ]),
+
+
+    trigger('list1', [ // 'list1' is a dummy word
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0)'
+      })),
+      transition('void => *', [  // 'void' is reservate word.
+        style({
+          opacity: 0,
+          transform: 'translateX(-100px)'
+        }),
+        animate(300)
+      ]),
+      transition('* => void', [  // 'void' is reservate word.
+        animate(300, style({
+          opacity: 0,
+          transform: 'translateX(100px)'
+        }))
+
+      ])
+    ]),
+    
+    
   ]
 })
-  
+
 export class AppComponent {
 
   state = 'normal';
