@@ -1,4 +1,4 @@
-import { Component, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -68,8 +68,39 @@ import { Component, trigger, state, style, transition, animate } from '@angular/
 
       ])
     ]),
-    
-    
+
+    trigger('list2', [ // 'list1' is a dummy word
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0)'
+      })),
+      transition('void => *', [
+        animate(1000, keyframes([
+          style({
+            opacity: 0,
+            transform: 'translateX(-100px)',
+            offset: 0
+          }),
+          style({
+            opacity: 0.5,
+            transform: 'translateX(-50px)',
+            offset: 0.3
+          }),
+          style({
+            opacity: 1,
+            transform: 'translateX(-20px)',
+            offset: 0.8
+          }),
+          style({
+            opacity: 1,
+            transform: 'translateX(0px)',
+            offset: 1
+          })
+        ]))
+      ])
+    ]),
+
+
   ]
 })
 
